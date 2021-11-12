@@ -30,4 +30,9 @@ public class InteractionPatient : MonoBehaviour
 
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        InteractionUI.SetActive(false); //UI ausschalten wenn man sich von Patienten entfernt
+    }
 }
