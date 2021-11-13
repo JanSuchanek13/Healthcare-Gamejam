@@ -4,12 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Patient
-<<<<<<< Updated upstream
   - Floor
-=======
+  - Patient
   - Relieve
->>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
