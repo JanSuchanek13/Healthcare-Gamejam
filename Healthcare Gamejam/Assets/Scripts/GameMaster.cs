@@ -18,12 +18,25 @@ public class GameMaster : MonoBehaviour
     // to open/close dialoge UI
     [SerializeField] GameObject interaction_UI;
 
+    // UIs
+    public GameObject Interaction_UI;
+    public GameObject conversationPartner;
+    public GameObject playerCharacter;
+
     public void Continue()
     {
         StartCoroutine(ContinueSounds());
         isBeingTalkedTo = false;
         interaction_UI.SetActive(false);
     }
+    public void FollowMe()
+    {
+        StartCoroutine(ContinueSounds());
+        conversationPartner.GetComponent<FollowOtherCharacter>().Follow(playerCharacter);
+        isBeingTalkedTo = true;
+        interaction_UI.SetActive(false);
+    }
+
     IEnumerator ContinueSounds()
     {
         if (clickSound)

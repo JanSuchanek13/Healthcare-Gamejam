@@ -136,10 +136,11 @@ public class MoveRandomly : MonoBehaviour
 
         // stop patient
         target = gameObject.transform.position;
-        inCoRoutine = false; // redundant?
+        navMeshAgent.SetDestination(target);
+        //inCoRoutine = false; // redundant?
         //navMeshAgent.Stop(); // redundant?
         //navMeshAgent.isStopped = true; // redundant??
         // reset path 
-        navMeshAgent.ResetPath(); // redundant??
+        //navMeshAgent.ResetPath(); // redundant??
     }
 }
