@@ -27,11 +27,14 @@ public class InteractionPatient : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Patient")) //interaction with patient
+
+        if (other.gameObject.CompareTag("Patient") && Gamemaster.GetComponent<GameMaster>().isBeingTalkedTo == false) //interaction with patient
         {
+
             if (other.transform.parent.gameObject.GetComponent<NeedsPatient>().taskAnnounced)
             {
-                //Gamemaster.GetComponent<GameMaster>().conversationPartner = other;
+                
+                Gamemaster.GetComponent<GameMaster>().conversationPartner = other.gameObject;
 
                 patientNearby = true;
                 other.transform.parent.gameObject.GetComponent<MoveRandomly>().StopAndTalk(gameObject.transform.position);
