@@ -9,6 +9,8 @@ public class InteractionPatient : MonoBehaviour
     [SerializeField] TextMeshProUGUI InteractionUI_Name;
     [SerializeField] TextMeshProUGUI InteractionUI_Text;
 
+    string currentRelieve;
+
     /*private void Start()
     {
         InteractionUI = GameObject.Find("Interaction_UI");
@@ -35,12 +37,12 @@ public class InteractionPatient : MonoBehaviour
             string currentNeed = other.transform.parent.gameObject.GetComponent<NeedsPatient>().currentNeed;
             InteractionUI_Text.text = currentNeed;
 
-
-            if (other.transform.parent.gameObject.GetComponent<NeedsPatient>().compareNeeds("Food"))
+            
+            if (other.transform.parent.gameObject.GetComponent<NeedsPatient>().compareNeeds("Food"))    // ask if the Player has the right relieve for the Need
             {
-
+                other.transform.parent.gameObject.GetComponent<NeedsPatient>().clearNeeds("Food"); //gib relieve an patient
             }
-            other.transform.parent.gameObject.GetComponent<NeedsPatient>().clearNeeds("Food"); //gib relieve an patient
+            
             
         }
     }
