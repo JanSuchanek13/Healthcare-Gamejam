@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 4253498393012592134}
   - component: {fileID: 912170058744779171}
   - component: {fileID: 3119968268126397801}
-  m_Layer: 0
+  - component: {fileID: 5908197114612990785}
+  m_Layer: 3
   m_Name: 'short_wall_frame '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,6 +52,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -59,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6629797300637803691, guid: a8c1837763799494db6c5ea047b48c20, type: 3}
+  - {fileID: 2100000, guid: 2030d99b364241d4a958be17d4476d56, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -81,3 +83,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5908197114612990785
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3480340145574872252}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.192068, y: 6.004613, z: 0.7199457}
+  m_Center: {x: 0, y: -0.0023064613, z: -0.0054019555}

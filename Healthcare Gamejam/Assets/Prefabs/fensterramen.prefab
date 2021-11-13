@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 3362574960121776861}
   - component: {fileID: 1803022636769445240}
   - component: {fileID: 4531017877724164530}
-  m_Layer: 0
+  - component: {fileID: 432152213444419482}
+  m_Layer: 3
   m_Name: fensterramen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,6 +52,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -59,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3522955778539423533, guid: bdf4912cc7241d84dbdc1dbed6e37cbe, type: 3}
+  - {fileID: 2100000, guid: 270e0b7f5de06d44c9db62b4fa420b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -81,3 +83,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &432152213444419482
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2729626336390729831}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.966617, y: 6, z: 0.7199465}
+  m_Center: {x: 3.968e-42, y: 0, z: -0.0054018646}
