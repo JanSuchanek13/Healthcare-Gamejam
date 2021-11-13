@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 912170058744779171}
   - component: {fileID: 3119968268126397801}
   - component: {fileID: 5908197114612990785}
+  - component: {fileID: 6528616346571288620}
   m_Layer: 3
   m_Name: 'short_wall_frame '
   m_TagString: Untagged
@@ -52,7 +53,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -96,3 +96,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.192068, y: 6.004613, z: 0.7199457}
   m_Center: {x: 0, y: -0.0023064613, z: -0.0054019555}
+--- !u!114 &6528616346571288620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3480340145574872252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 652433448a89ab54b8085a2432191c5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seeThroughMaterial: {fileID: 2100000, guid: 3ee1266743b90274eb290e1cb9ec73b7, type: 2}
