@@ -20,7 +20,7 @@ public class InteractionPatient : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Patient"))
         {
-            Debug.Log("Needs recognized");
+            //Debug.Log("Needs recognized");
             InteractionUI.SetActive(true);
 
             //ask for name and set them
@@ -28,6 +28,8 @@ public class InteractionPatient : MonoBehaviour
             string parentName = parent.name;
             InteractionUI_Name.text = parentName;
 
+            other.transform.parent.gameObject.GetComponent<NeedsPatient>().clearNeeds("Food");
+            
         }
     }
 
