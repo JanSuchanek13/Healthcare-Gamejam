@@ -73,6 +73,7 @@ GameObject:
   m_Component:
   - component: {fileID: 265848471002668234}
   - component: {fileID: 304770036982922023}
+  - component: {fileID: 702020177304336487}
   m_Layer: 0
   m_Name: RabbitPatientPrefab
   m_TagString: Untagged
@@ -104,7 +105,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 647299443288278640}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 2f8602fc763cd0e4997e7316b0347e8c, type: 2}
   m_CullingMode: 0
@@ -115,6 +116,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!111 &702020177304336487
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647299443288278640}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: bc191a67a6cd419409bbef8df1d08c6b, type: 2}
+  - {fileID: 7400000, guid: 40c45a3f3e432624980b0a83ca2050c6, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &709301297575994289
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,6 +887,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4781147398940846417}
   - component: {fileID: 5849286649473343146}
+  - component: {fileID: 618763233499088573}
   m_Layer: 0
   m_Name: RabbitBody
   m_TagString: Untagged
@@ -965,6 +984,25 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.00010476075, y: 0.009182887, z: 0.00053288555}
     m_Extent: {x: 0.008618893, y: 0.018890044, z: 0.007487289}
   m_DirtyAABB: 0
+--- !u!95 &618763233499088573
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7439123874345025715}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c9f8994c836d96446af449276fcf3c86, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7548306262689533212
 GameObject:
   m_ObjectHideFlags: 0
