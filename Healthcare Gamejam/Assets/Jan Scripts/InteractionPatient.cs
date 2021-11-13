@@ -7,6 +7,7 @@ public class InteractionPatient : MonoBehaviour
 {
     [SerializeField] GameObject InteractionUI;
     [SerializeField] TextMeshProUGUI InteractionUI_Name;
+    [SerializeField] TextMeshProUGUI InteractionUI_Text;
 
     /*private void Start()
     {
@@ -15,11 +16,13 @@ public class InteractionPatient : MonoBehaviour
     }*/
 
 
-    
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Patient"))
         {
+            other.transform.parent.gameObject.GetComponent<MoveRandomly>().StopAndTalk(gameObject.transform.position);
+
             //Debug.Log("Needs recognized");
             InteractionUI.SetActive(true);
 
@@ -28,10 +31,21 @@ public class InteractionPatient : MonoBehaviour
             string parentName = parent.name;
             InteractionUI_Name.text = parentName;
 
-            other.transform.parent.gameObject.GetComponent<NeedsPatient>().clearNeeds("Food");
+            //ask for Need and set them
+            string currentNeed = other.transform.parent.gameObject.GetComponent<NeedsPatient>().currentNeed;
+            InteractionUI_Text.text = currentNeed;
+
+
+            if (other.transform.parent.gameObject.GetComponent<NeedsPatient>().compareNeeds("Food"))
+            {
+
+            }
+            other.transform.parent.gameObject.GetComponent<NeedsPatient>().clearNeeds("Food"); //gib relieve an patient
             
         }
     }
+
+    
 
     private void OnTriggerExit(Collider other)
     {

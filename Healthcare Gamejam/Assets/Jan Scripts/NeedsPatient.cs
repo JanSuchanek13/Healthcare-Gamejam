@@ -67,6 +67,11 @@ public class NeedsPatient : MonoBehaviour
 
     }
 
+    public bool compareNeeds(string relieve)
+    {
+        return relieve == currentNeed;
+    }
+
     private IEnumerator Needs(float waitTime)
     {
         while (true)
@@ -78,7 +83,7 @@ public class NeedsPatient : MonoBehaviour
                 NeedsSign.gameObject.SetActive(true);
 
                 //zufällige Need verteilen aus Needlist
-                int randomNeed = Random.Range(0, needsList.Length -2);
+                int randomNeed = Random.Range(0, needsList.Length);
                 currentNeed = needsList[randomNeed];
                 Debug.Log(currentNeed);
 
