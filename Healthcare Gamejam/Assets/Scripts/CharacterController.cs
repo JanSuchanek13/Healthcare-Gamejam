@@ -8,6 +8,7 @@ public class CharacterController : MonoBehaviour
     // Animation Assets on character
     Animation anim;
     bool isOnTheMove = false;
+    GameObject gameMaster;
 
     void Start()
     {
@@ -15,6 +16,7 @@ public class CharacterController : MonoBehaviour
         // controls animations
         anim = gameObject.GetComponent<Animation>();
         StartCoroutine(CheckMoving());
+        gameMaster = GameObject.Find("GAME_MASTER");
     }
     void Update()
     {
@@ -22,11 +24,16 @@ public class CharacterController : MonoBehaviour
         {
             anim.Stop("honeyArmature_IdleHoney");
             anim.Play("honeyArmature_walkinghoney");
+            //playerWalkingSound
         }else
         {
             anim.Stop("honeyArmature_walkinghoney");
             anim.Play("honeyArmature_IdleHoney");
         }
+
+        //if (gameMaster.GetComponent<GameMaster>().isBeingTalkedTo)
+        //{  
+        //}
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -36,6 +43,24 @@ public class CharacterController : MonoBehaviour
                 agent.SetDestination(hit.point);
             }
         }
+    }
+    public void StopPlayerToTalk(Vector3 NPCpos)
+    {
+        // stop moving
+        gameMaster.GetComponent<GameMaster>().isBeingTalkedTo = true;
+        //isBeingTalkedTo = true;
+
+        // look at player
+        gameObject.transform.forward = NPCpos;
+
+        // stop patient
+        Vector3 target = gameObject.transform.position;
+        agent.SetDestination(target);
+        //inCoRoutine = false; // redundant?
+        //navMeshAgent.Stop(); // redundant?
+        //navMeshAgent.isStopped = true; // redundant??
+        // reset path 
+        //navMeshAgent.ResetPath(); // redundant??
     }
     IEnumerator CheckMoving()
     {

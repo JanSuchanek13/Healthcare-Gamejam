@@ -7352,8 +7352,7 @@ MonoBehaviour:
   isBeingTalkedTo: 0
   clickSound: {fileID: 0}
   chatterSound: {fileID: 0}
-  interaction_UI: {fileID: 0}
-  Interaction_UI: {fileID: 0}
+  interaction_UI: {fileID: 7356453915128786252}
   conversationPartner: {fileID: 0}
   playerCharacter: {fileID: 1251343474}
 --- !u!114 &983755614
@@ -18636,7 +18635,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7356453915128786256
 RectTransform:
   m_ObjectHideFlags: 0

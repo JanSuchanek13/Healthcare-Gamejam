@@ -33,11 +33,15 @@ public class InteractionPatient : MonoBehaviour
 
             if (other.transform.parent.gameObject.GetComponent<NeedsPatient>().taskAnnounced)
             {
-                
-                Gamemaster.GetComponent<GameMaster>().conversationPartner = other.gameObject;
+                // determine GO of the patient who triggered the interaction
+                GameObject otherChar = other.transform.parent.gameObject;
+                // hand over GO of the patient to GameMaster
+                Gamemaster.GetComponent<GameMaster>().conversationPartner = otherChar;
+                //Debug.Log(Gamemaster.GetComponent<GameMaster>().conversationPartner + " was handed over");
 
                 patientNearby = true;
                 other.transform.parent.gameObject.GetComponent<MoveRandomly>().StopAndTalk(gameObject.transform.position);
+                gameObject.GetComponent<CharacterController>().StopPlayerToTalk(otherChar.transform.position);
 
                 //Debug.Log("Needs recognized");
                 InteractionUI.SetActive(true);

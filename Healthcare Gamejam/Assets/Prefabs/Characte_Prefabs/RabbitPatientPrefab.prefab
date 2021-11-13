@@ -294,6 +294,7 @@ GameObject:
   - component: {fileID: 3366834136916873498}
   - component: {fileID: 2479914352282311498}
   - component: {fileID: 4222155187293528673}
+  - component: {fileID: 8409943698638468303}
   m_Layer: 0
   m_Name: RabbitPatientPrefab
   m_TagString: Patient
@@ -312,10 +313,10 @@ Transform:
   m_LocalPosition: {x: 9.94, y: 1.603, z: -15.02}
   m_LocalScale: {x: 1.05621, y: 1.05621, z: 1.05621}
   m_Children:
+  - {fileID: 2700543934909443256}
   - {fileID: 961182488619560047}
   - {fileID: 7917525173355561103}
   - {fileID: 3461310190365475357}
-  - {fileID: 2700543934909443256}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -52.515, z: 0}
@@ -418,6 +419,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8409943698638468303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2828564452275990446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b3a80a6c0e9987448353e99136b5645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2988929007679699492
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,7 +556,7 @@ Transform:
   - {fileID: 6727081464800457203}
   - {fileID: 3557602303579910470}
   m_Father: {fileID: 3173565278902908180}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4556446864187590046
 GameObject:
@@ -572,11 +585,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4556446864187590046}
   m_LocalRotation: {x: -0, y: 0.4424059, z: -0, w: 0.896815}
-  m_LocalPosition: {x: -0.0000081456, y: 1.3226544, z: 0.0000017185}
+  m_LocalPosition: {x: -0, y: 1.3226544, z: 0}
   m_LocalScale: {x: 5.7845197, y: 5.7845206, z: 5.7845197}
   m_Children: []
   m_Father: {fileID: 3173565278902908180}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8485986638640011312
 MeshFilter:
@@ -732,7 +745,7 @@ Transform:
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 3173565278902908180}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &9121592717460092788
 SkinnedMeshRenderer:
@@ -891,7 +904,7 @@ Transform:
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 3173565278902908180}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7919148129388150357
 MeshFilter:

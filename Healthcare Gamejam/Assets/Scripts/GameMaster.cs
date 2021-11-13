@@ -16,10 +16,7 @@ public class GameMaster : MonoBehaviour
     public AudioSource chatterSound;
 
     // to open/close dialoge UI
-    [SerializeField] GameObject interaction_UI;
-
-    // UIs
-    public GameObject Interaction_UI;
+    public GameObject interaction_UI;
     public GameObject conversationPartner;
     public GameObject playerCharacter;
 
