@@ -9,47 +9,78 @@ public class InteractionPatient : MonoBehaviour
     [SerializeField] TextMeshProUGUI InteractionUI_Name;
     [SerializeField] TextMeshProUGUI InteractionUI_Text;
 
-    string currentRelieve;
+    GameObject Gamemaster;
+    
 
-    /*private void Start()
+    string currentRelieve;
+    bool patientNearby = false;
+    
+
+    private void Start()
     {
-        InteractionUI = GameObject.Find("Interaction_UI");
-        InteractionUI_Name = GameObject.Find("Name_UI").GetComponent<TextMeshProUGUI>();
-    }*/
+        Gamemaster = GameObject.Find("GAME_MASTER");
+        
+        
+    }
 
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Patient"))
+        if (other.gameObject.CompareTag("Patient")) //interaction with patient
         {
-            other.transform.parent.gameObject.GetComponent<MoveRandomly>().StopAndTalk(gameObject.transform.position);
-
-            //Debug.Log("Needs recognized");
-            InteractionUI.SetActive(true);
-
-            //ask for name and set them
-            GameObject parent = other.transform.parent.gameObject;
-            string parentName = parent.name;
-            InteractionUI_Name.text = parentName;
-
-            //ask for Need and set them
-            string currentNeed = other.transform.parent.gameObject.GetComponent<NeedsPatient>().currentNeed;
-            InteractionUI_Text.text = currentNeed;
-
-
-            if (other.transform.parent.gameObject.GetComponent<NeedsPatient>().compareNeeds(currentRelieve))    // ask if the Player has the right relieve for the Need
+            if (other.transform.parent.gameObject.GetComponent<NeedsPatient>().taskAnnounced)
             {
-                other.transform.parent.gameObject.GetComponent<NeedsPatient>().clearNeeds(currentRelieve); //gib relieve an patient
-                currentRelieve = null;
+                //Gamemaster.GetComponent<GameMaster>().conversationPartner = other;
+
+                patientNearby = true;
+                other.transform.parent.gameObject.GetComponent<MoveRandomly>().StopAndTalk(gameObject.transform.position);
+
+                //Debug.Log("Needs recognized");
+                InteractionUI.SetActive(true);
+
+                //ask for picture and set it
+                
+
+                //ask for name and set it
+                GameObject parent = other.transform.parent.gameObject;
+                string parentName = parent.name;
+                InteractionUI_Name.text = parentName;
+
+                //ask for Need and set it
+                string currentNeed = other.transform.parent.gameObject.GetComponent<NeedsPatient>().currentNeed;
+                InteractionUI_Text.text = currentNeed;
+
+
+                if (other.transform.parent.gameObject.GetComponent<NeedsPatient>().compareNeeds(currentRelieve))    // ask if the Player has the right relieve for the Need
+                {
+                    other.transform.parent.gameObject.GetComponent<NeedsPatient>().clearNeeds(currentRelieve); //gib relieve an patient
+                    currentRelieve = null;
+                }
+            }
+            else
+            {
+                InteractionUI.SetActive(true);
+                InteractionUI_Text.text = other.transform.parent.gameObject.GetComponent<NeedsPatient>().mainTask;
+                other.transform.parent.gameObject.GetComponent<NeedsPatient>().taskAnnounced = true;
             }
 
-
         }
-        else if (other.gameObject.CompareTag("Relieve"))
+        else if (other.gameObject.CompareTag("Relieve")) //take relieve
         {
-            currentRelieve = other.name;
-            Debug.Log(currentRelieve);
+            if (other.name == "Food" | other.name == "Medic")
+            {
+                currentRelieve = other.name;
+                Debug.Log(currentRelieve);
+            }
+            else
+            {
+                if (patientNearby)
+                {
+                    currentRelieve = other.name;
+                    Debug.Log(currentRelieve);
+                }
+            }
         }
     }
 
@@ -57,6 +88,10 @@ public class InteractionPatient : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        InteractionUI.SetActive(false); //UI ausschalten wenn man sich von Patienten entfernt
+        if (other.gameObject.CompareTag("Patient"))
+        {
+            patientNearby = false;
+            InteractionUI.SetActive(false); //UI ausschalten wenn man sich von Patienten entfernt
+        }
     }
 }

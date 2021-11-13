@@ -6,9 +6,14 @@ public class NeedsPatient : MonoBehaviour
 {
     bool needActive = false;
     int needStrength = -1;
-    string[] needsList = new string[] {"Food", "Medic", "Bath" }; //Array aller needs
+    public string[] needsList = new string[] {"Food", "Medic", "Bath" }; //Array aller needs
     public string currentNeed;
     Transform NeedsSign;
+
+    public string mainTask;
+    public bool taskAnnounced = false;
+    int sessionsLeft = 3;
+
 
     private IEnumerator coroutine;
     
@@ -16,10 +21,16 @@ public class NeedsPatient : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //activate Maintask
+        mainTask = "Ich will so schnell wie möglich wieder laufen können ^^";
+
+
+        //activate Need
         coroutine = Needs(Random.Range(10f, 11f)); //zeit festlegen in der needs entstehen
         StartCoroutine(coroutine);
         NeedsSign = transform.Find("NeedsSign");
         
+
     }
 
     private void Update()
@@ -59,6 +70,11 @@ public class NeedsPatient : MonoBehaviour
         
         if (relieve == currentNeed)
         {
+            if (relieve == "Trigger_Reha")
+            {
+                sessionsLeft--;
+                Debug.Log("eine session geschafft");
+            }
             Debug.Log("hit");
             needStrength = -1;
             needActive = false;
