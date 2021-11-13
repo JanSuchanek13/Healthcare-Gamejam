@@ -37,13 +37,19 @@ public class InteractionPatient : MonoBehaviour
             string currentNeed = other.transform.parent.gameObject.GetComponent<NeedsPatient>().currentNeed;
             InteractionUI_Text.text = currentNeed;
 
-            
-            if (other.transform.parent.gameObject.GetComponent<NeedsPatient>().compareNeeds("Food"))    // ask if the Player has the right relieve for the Need
+
+            if (other.transform.parent.gameObject.GetComponent<NeedsPatient>().compareNeeds(currentRelieve))    // ask if the Player has the right relieve for the Need
             {
-                other.transform.parent.gameObject.GetComponent<NeedsPatient>().clearNeeds("Food"); //gib relieve an patient
+                other.transform.parent.gameObject.GetComponent<NeedsPatient>().clearNeeds(currentRelieve); //gib relieve an patient
+                currentRelieve = null;
             }
-            
-            
+
+
+        }
+        else if (other.gameObject.CompareTag("Relieve"))
+        {
+            currentRelieve = other.name;
+            Debug.Log(currentRelieve);
         }
     }
 
