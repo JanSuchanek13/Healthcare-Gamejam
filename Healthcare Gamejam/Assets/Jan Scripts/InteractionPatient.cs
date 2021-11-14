@@ -65,6 +65,8 @@ public class InteractionPatient : MonoBehaviour
                 string currentNeed = other.transform.parent.gameObject.GetComponent<NeedsPatient>().currentNeed;
                 InteractionUI_Text.text = currentNeed;
 
+                
+
 
 
                 if (other.transform.parent.gameObject.GetComponent<NeedsPatient>().compareNeeds(currentRelieve))    // ask if the Player has the right relieve for the Need
@@ -108,7 +110,7 @@ public class InteractionPatient : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Patient"))
         {
-            Gamemaster.GetComponent<GameMaster>().isBeingTalkedTo = false;
+            //Gamemaster.GetComponent<GameMaster>().isBeingTalkedTo = false;
             patientNearby = false;
             nearbyPatient = null;
             //InteractionUI.SetActive(false); //UI ausschalten wenn man sich von Patienten entfernt

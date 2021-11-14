@@ -8,7 +8,7 @@ public class NeedsPatient : MonoBehaviour
     bool needActive = false;
     int needStrength = -1;
     public string[] needsList = new string[] {"Food", "Medic", "Bath" }; //Array aller needs
-    public string currentNeed;
+    public string currentNeed = "Ich brauche Ruhe";
     Transform NeedsSign;
 
     // var for MainTask
@@ -88,13 +88,14 @@ public class NeedsPatient : MonoBehaviour
         {
             sessionsLeft--;
             Gamemaster.GetComponent<GameMaster>().gainHearts();
+            Gamemaster.GetComponent<GameMaster>().Reha_Success();
             Gamemaster.GetComponent<GameMaster>().UpdatePatient_1(gameObject.name, mainTask, " weitere Reha-Termine. Sieht schon richtig gut aus!", sessionsLeft);
             Debug.Log("eine session geschafft");
             if (sessionsLeft == 0)
             {
                 StartCoroutine(coroutine2);
                 Gamemaster.GetComponent<GameMaster>().gainHearts();
-
+                
             }
         }
         if (relieve == currentNeed)
@@ -104,6 +105,29 @@ public class NeedsPatient : MonoBehaviour
             needStrength = -1;
             needActive = false;
             NeedsSign.gameObject.SetActive(false);
+
+            switch (relieve)
+            {
+                case "Food":
+
+                    Gamemaster.GetComponent<GameMaster>().Kitchen_Fetched();
+                    break;
+
+                case "Medic":
+
+                    Gamemaster.GetComponent<GameMaster>().Apotheke_Fetched();
+                    break;
+
+                case "Bath":
+
+                    Gamemaster.GetComponent<GameMaster>().Toilet_Success();
+                    break;
+
+                default:
+                    Debug.Log("Fehler");
+                    break;
+            }
+            currentNeed = "Ich brauche Ruhe";
         }
         gameObject.GetComponent<FollowOtherCharacter>().StopFollowing();
     }
