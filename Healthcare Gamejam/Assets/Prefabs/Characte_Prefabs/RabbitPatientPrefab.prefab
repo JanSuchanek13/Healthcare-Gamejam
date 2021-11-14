@@ -350,6 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ed271d1fb34ff04193c5a1275a0e203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walking_Sound: {fileID: 0}
 --- !u!195 &3439271306612042228
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -684,7 +685,7 @@ Transform:
   m_GameObject: {fileID: 4556446864187590046}
   m_LocalRotation: {x: -0, y: 0.4424059, z: -0, w: 0.896815}
   m_LocalPosition: {x: -0, y: 1.3226544, z: 0}
-  m_LocalScale: {x: 5.7845197, y: 5.7845206, z: 5.7845197}
+  m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children: []
   m_Father: {fileID: 3173565278902908180}
   m_RootOrder: 0
@@ -749,8 +750,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5000002
-  m_Center: {x: 0.0000009536741, y: -0.00000011920929, z: 0.000001907349}
+  m_Radius: 0.4154254
+  m_Center: {x: 0.0000009593535, y: -0.018536717, z: 0.000001918707}
 --- !u!1 &5107972344325740058
 GameObject:
   m_ObjectHideFlags: 0
@@ -1078,7 +1079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08ec2bd337fa1d54bac914dbb4afd43e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverHeight: 5
+  hoverHeight: 1
   speed: 1
 --- !u!1 &6115384818098967265
 GameObject:
