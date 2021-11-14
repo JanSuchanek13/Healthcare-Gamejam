@@ -37,7 +37,7 @@ public class NeedsPatient : MonoBehaviour
 
 
         //activate Need
-        coroutine = Needs(Random.Range(10f, 11f)); //zeit festlegen in der needs entstehen
+        coroutine = Needs(Random.Range(40f, 60f)); //zeit festlegen in der needs entstehen
         StartCoroutine(coroutine);
         NeedsSign = transform.Find("NeedsSign");
         
@@ -146,7 +146,7 @@ public class NeedsPatient : MonoBehaviour
     private IEnumerator Countdown()
     {
         cooldownRunning = true;
-        yield return new WaitForSeconds(120.0f);
+        yield return new WaitForSeconds(30.0f);
         cooldownRunning = false;
 
     }
