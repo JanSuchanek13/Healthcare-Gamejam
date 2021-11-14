@@ -44,18 +44,15 @@ public class CharacterController : MonoBehaviour
             }
         }
     }
-    public void StopPlayerToTalk(Vector3 NPCpos)
+    public void StopPlayerToTalk(Vector3 patientPos)
     {
-        // stop moving
+        // stop patients from randomly moving
         gameMaster.GetComponent<GameMaster>().isBeingTalkedTo = true;
-        //isBeingTalkedTo = true;
+        // stop player
+        agent.SetDestination(transform.position);
+        // look at patient
+        transform.LookAt(patientPos, transform.up);
 
-        // look at player
-        gameObject.transform.forward = NPCpos;
-
-        // stop patient
-        Vector3 target = gameObject.transform.position;
-        agent.SetDestination(target);
         //inCoRoutine = false; // redundant?
         //navMeshAgent.Stop(); // redundant?
         //navMeshAgent.isStopped = true; // redundant??

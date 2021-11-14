@@ -76,7 +76,7 @@ public class NeedsPatient : MonoBehaviour
             Debug.Log("eine session geschafft");
             if (sessionsLeft == 0)
             {
-                //Gamemaster.gainHearts();
+                Gamemaster.GetComponent<GameMaster>().gainHearts();
             }
         }
         if (relieve == currentNeed)
@@ -87,7 +87,7 @@ public class NeedsPatient : MonoBehaviour
             needActive = false;
             NeedsSign.gameObject.SetActive(false);
         }
-        //transform.parent.gameObject.GetComponent<MoveRandomly>().StopFollowing();
+        transform.parent.gameObject.GetComponent<FollowOtherCharacter>().StopFollowing();
     }
 
     public bool compareNeeds(string relieve)

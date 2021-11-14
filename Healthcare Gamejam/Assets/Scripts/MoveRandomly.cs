@@ -65,7 +65,28 @@ public class MoveRandomly : MonoBehaviour
     {
         inCoRoutine = true;
         yield return new WaitForSeconds(Random.Range(minTimerForNewPath, maxTimerForNewPath));
-        GetNewPath();
+        
+        // this is new and experimental: after waiting i check if im in a conversation, and if so
+        // i do not execute the remainder of the code! Hah!
+        if (!gameMaster.GetComponent<GameMaster>().isBeingTalkedTo)
+        {
+            // execute rest of code:
+            GetNewPath();
+            validPath = navMeshAgent.CalculatePath(target, path);
+
+            while (!validPath)
+            {
+                yield return new WaitForSeconds(0.01f);
+                GetNewPath();
+                validPath = navMeshAgent.CalculatePath(target, path);
+            }
+            inCoRoutine = false;
+        }else
+        {
+            inCoRoutine = false;
+        }
+
+        /*GetNewPath();
         validPath = navMeshAgent.CalculatePath(target, path);
 
         while (!validPath)
@@ -74,7 +95,7 @@ public class MoveRandomly : MonoBehaviour
             GetNewPath();
             validPath = navMeshAgent.CalculatePath(target, path);
         }
-        inCoRoutine = false;
+        inCoRoutine = false;*/
     }
     public void GetNewPath()
     {
@@ -97,11 +118,6 @@ public class MoveRandomly : MonoBehaviour
         {
             StartCoroutine(DoSomething());
         }
-
-        /*if (isBeingTalkedTo)
-        {
-            StopAndTalk(vector3 playerPos);
-        }*/
     }
     
     bool isOnTheMove = false;
@@ -121,22 +137,18 @@ public class MoveRandomly : MonoBehaviour
         StartCoroutine(CheckMoving());
     }
 
-    //bool isBeingTalkedTo = false;
-
     // Jan calls this when player moves close to patient
     // hands over his position to look at
     public void StopAndTalk(Vector3 playerPos)
     {
-        // stop moving
+        // stop patients from randomly moving
         gameMaster.GetComponent<GameMaster>().isBeingTalkedTo = true;
-        //isBeingTalkedTo = true;
-        
-        // look at player
-        gameObject.transform.forward = playerPos;
-
         // stop patient
-        target = gameObject.transform.position;
-        navMeshAgent.SetDestination(target);
+        navMeshAgent.SetDestination(transform.position);
+        // look at player
+        transform.LookAt(playerPos, transform.up);
+
+
         //inCoRoutine = false; // redundant?
         //navMeshAgent.Stop(); // redundant?
         //navMeshAgent.isStopped = true; // redundant??
