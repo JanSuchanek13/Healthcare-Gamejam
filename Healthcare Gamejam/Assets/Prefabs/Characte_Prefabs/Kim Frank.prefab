@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 8409943698638468303}
   - component: {fileID: 2280637077459517755}
   m_Layer: 0
-  m_Name: RabbitPatientPrefab
+  m_Name: Kim Frank
   m_TagString: Patient
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

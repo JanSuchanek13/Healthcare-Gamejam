@@ -82,6 +82,24 @@ public class CharacterController : MonoBehaviour
         }
         StartCoroutine(CheckMoving());
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.name == "Food")
+        {
+            gameMaster.GetComponent<GameMaster>().Kitchen_Fetched();
+        }else if (other.gameObject.name == "Bath")
+        {
+            gameMaster.GetComponent<GameMaster>().Toilet_Success();
+        }else if (other.gameObject.name == "Trigger_Reha")
+        {
+            gameMaster.GetComponent<GameMaster>().Reha_Success();
+        }
+        if (other.gameObject.name == "Medic")
+        {
+            gameMaster.GetComponent<GameMaster>().Apotheke_Fetched();
+        }
+    }
 }
 
 

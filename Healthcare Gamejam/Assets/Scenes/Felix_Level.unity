@@ -7892,7 +7892,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d2077d4a3d991b74db8d37dd42851fd7, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -16654,7 +16654,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d82effea73e246d4f905d68a81f77f2c, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -18816,13 +18816,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 180f02c915bb9c34e9bc4b74a2eb16fa, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 80
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -22114,7 +22114,7 @@ PrefabInstance:
     - target: {fileID: 2828564452275990446, guid: 0c0cb3acb4d136f4e97b3bb0193bda23,
         type: 3}
       propertyPath: m_Name
-      value: RabbitPatientPrefab
+      value: Kim Frank
       objectReference: {fileID: 0}
     - target: {fileID: 3173565278902908180, guid: 0c0cb3acb4d136f4e97b3bb0193bda23,
         type: 3}
@@ -25580,7 +25580,7 @@ PrefabInstance:
     - target: {fileID: 2983414033090804646, guid: d7cf417ae40ffe04aa6ae62aef09c5ef,
         type: 3}
       propertyPath: m_Name
-      value: HoneyPrefab
+      value: Mica
       objectReference: {fileID: 0}
     - target: {fileID: 3895924931614724519, guid: d7cf417ae40ffe04aa6ae62aef09c5ef,
         type: 3}
