@@ -78,7 +78,7 @@ public class InteractionPatient : MonoBehaviour
                 InteractionUI.SetActive(true);
                 InteractionUI_Text.text = other.transform.parent.gameObject.GetComponent<NeedsPatient>().mainTask;
                 other.transform.parent.gameObject.GetComponent<NeedsPatient>().taskAnnounced = true;
-                //Gamemaster.GetComponent<GameMaster>().UpdatePatient_1(nearbyPatient.name, other.transform.parent.gameObject.GetComponent<NeedsPatient>().mainTask, " weitere Reha-Termine. Sieht schon richtig gut aus!", other.transform.parent.gameObject.GetComponent<NeedsPatient>().sessionsLeft);
+                Gamemaster.GetComponent<GameMaster>().UpdatePatient_1(nearbyPatient.name, other.transform.parent.gameObject.GetComponent<NeedsPatient>().mainTask, " weitere Reha-Termine. Sieht schon richtig gut aus!", other.transform.parent.gameObject.GetComponent<NeedsPatient>().sessionsLeft);
             }
 
         }

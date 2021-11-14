@@ -30,7 +30,7 @@ public class NeedsPatient : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Gamemaster = GameObject.Find("GAMEMASTER");
+        Gamemaster = GameObject.Find("GAME_MASTER");
 
         //activate Maintask
         mainTask = "Ich möchte mein linkes Sprunggelenk wieder voll belasten können ^^";
@@ -46,6 +46,11 @@ public class NeedsPatient : MonoBehaviour
 
     private void Update()
     {
+        if (currentNeed == "Bath" || !cooldownRunning)
+        {
+            Gamemaster.GetComponent<GameMaster>().followEnabled = true;
+        }
+
         if (NeedsSign.gameObject.activeSelf == true)
         {
             switch (needStrength) // in Abhängikeit von der needsStrength verfärbt sich das needSign
@@ -82,7 +87,7 @@ public class NeedsPatient : MonoBehaviour
         {
             sessionsLeft--;
             Gamemaster.GetComponent<GameMaster>().gainHearts();
-            //Gamemaster.GetComponent<GameMaster>().UpdatePatient_1(gameObject.name, mainTask, sessionsLeft);
+            Gamemaster.GetComponent<GameMaster>().UpdatePatient_1(gameObject.name, mainTask, " weitere Reha-Termine. Sieht schon richtig gut aus!", sessionsLeft);
             Debug.Log("eine session geschafft");
             if (sessionsLeft == 0)
             {
@@ -122,10 +127,10 @@ public class NeedsPatient : MonoBehaviour
                 Debug.Log(currentNeed);
                 needStrength++;
 
-                if (currentNeed == "Bath" || !cooldownRunning)
+                /*if (currentNeed == "Bath" || !cooldownRunning)
                 {
                     Gamemaster.GetComponent<GameMaster>().followEnabled = true;
-                }
+                }*/
 
             }
             else
