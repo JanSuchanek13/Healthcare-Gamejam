@@ -8,6 +8,7 @@ public class FollowOtherCharacter : MonoBehaviour
     bool followSomeone = false;
     NavMeshAgent navMeshAgent;
     GameObject gameMaster;
+    Vector3 followOffset;
 
     private void Awake()
     {
@@ -17,6 +18,7 @@ public class FollowOtherCharacter : MonoBehaviour
     public void Follow(GameObject target)
     {
         whomToFollow = target;
+        //followOffset = transform.localScale * 1.5f; // not working, dunno why?
         followSomeone = true;
     }
 
@@ -24,7 +26,7 @@ public class FollowOtherCharacter : MonoBehaviour
     {
         if (followSomeone)
         {
-            navMeshAgent.SetDestination(whomToFollow.transform.position);
+            navMeshAgent.SetDestination(whomToFollow.transform.position + followOffset); // should be body size*1.1f
         }
     }
 
@@ -34,5 +36,6 @@ public class FollowOtherCharacter : MonoBehaviour
         followSomeone = false;
         gameMaster.GetComponent<GameMaster>().isBeingTalkedTo = false;
         gameMaster.GetComponent<GameMaster>().conversationPartner = null;
+        followOffset = new Vector3(0f, 0f, 0f);
     }
 }

@@ -23,6 +23,7 @@ public class MoveRandomly : MonoBehaviour
     bool validPath;
     Vector3 target;
     GameObject gameMaster;
+    [SerializeField] AudioSource walking_Sound;
 
     // Animation Assets on character
     Animation anim;
@@ -108,10 +109,13 @@ public class MoveRandomly : MonoBehaviour
         {
             anim.Stop("RabbitArmature_RabbitIdle");
             anim.Play("RabbitArmature_RabbitWalking");
-        }else
+            walking_Sound.enabled = true;
+        }
+        else
         {
             anim.Stop("RabbitArmature_RabbitWalking");
             anim.Play("RabbitArmature_RabbitIdle");
+            walking_Sound.enabled = false;
         }
 
         if (gameMaster.GetComponent<GameMaster>().isBeingTalkedTo == false && !inCoRoutine)
@@ -147,6 +151,8 @@ public class MoveRandomly : MonoBehaviour
         navMeshAgent.SetDestination(transform.position);
         // look at player
         transform.LookAt(playerPos, transform.up);
+        // speak:
+        gameMaster.GetComponent<GameMaster>().RandomChatterNoise();
 
 
         //inCoRoutine = false; // redundant?

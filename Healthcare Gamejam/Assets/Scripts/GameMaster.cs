@@ -5,6 +5,10 @@ using TMPro;
 
 public class GameMaster : MonoBehaviour
 {
+    // used for anythink pitch-modding
+    public float minPitch = 1f;
+    public float maxPitch = 2f;
+
     // controlls how long a character moves toward any given target
     public float minTimerForNewPath = 3f;
     public float maxTimerForNewPath = 8f;
@@ -35,10 +39,16 @@ public class GameMaster : MonoBehaviour
     public int hearts;
 
     // in case we get around to playing sounds on clicking button
-    public AudioSource clickSound;
-    public AudioSource chatterSound;
-    public AudioSource victorySound;
-    public AudioSource errorSound;
+    public AudioSource[] arrayOfChatter_Sounds;
+    public AudioSource click_Sound;
+    public AudioSource victory_Sound;
+    public AudioSource reha_Sound;
+    public AudioSource toilet_Sound;
+    public AudioSource kitchen_Sound;
+    public AudioSource apotheke_Sound;
+    public AudioSource background_Music;
+
+    //public AudioSource errorSound;
 
     public void UpdatePatient_1(string name, string goal, string weg, int verbleibendeTermine)
     {
@@ -57,9 +67,9 @@ public class GameMaster : MonoBehaviour
             Debug.Log("you gathered " + hearts + " hearts! congrats!");
             // should stop all characters and let them idle
             isBeingTalkedTo = true;
-            if (victorySound)
+            if (victory_Sound)
             {
-                victorySound.Play();
+                victory_Sound.Play();
             }
             if (victoryBanner_UI)
             {
@@ -82,12 +92,14 @@ public class GameMaster : MonoBehaviour
         {
             klemmbrettIsOpened = true;
             klemmbrett_UI.SetActive(true);
+            Time.timeScale = 0.0f;
             if (hasPatient_1)
             {
                 patient_1_Overview.SetActive(true);
             }
         }else
         {
+            Time.timeScale = 1f;
             klemmbrett_UI.SetActive(false);
             klemmbrettIsOpened = false;
         }
@@ -115,17 +127,56 @@ public class GameMaster : MonoBehaviour
             errorSound.Play();
         }*/
     }
+    public void RandomChatterNoise()
+    {
+        AudioSource randomChatterSound = arrayOfChatter_Sounds[Random.Range(0, arrayOfChatter_Sounds.Length)];
+        randomChatterSound.pitch = Random.Range(minPitch, maxPitch);
+        randomChatterSound.Play();
+    }
+
 
     IEnumerator ContinueSounds()
     {
-        if (clickSound)
+        if (click_Sound)
         {
-            clickSound.Play();
+            click_Sound.Play();
         }
         yield return new WaitForSeconds(.5f);
-        if (chatterSound != null)
+        if (arrayOfChatter_Sounds != null)
         {
-            chatterSound.Play();
+            RandomChatterNoise();
         }
+    }
+
+    public void Reha_Success()
+    {
+        reha_Sound.pitch = Random.Range(minPitch, maxPitch);
+        reha_Sound.Play();
+        Invoke("Victory_Sound", .5f); // success delayed
+        //victory_Sound.Play();
+    }
+    public void Toilet_Success()
+    {
+        toilet_Sound.pitch = Random.Range(minPitch, maxPitch);
+        toilet_Sound.Play();
+        Invoke("Victory_Sound", .5f); // success delayed
+        //victory_Sound.Play();
+    }
+    public void Kitchen_Fetched()
+    {
+        kitchen_Sound.pitch = Random.Range(minPitch, maxPitch);
+        kitchen_Sound.Play();
+    }
+    public void Apotheke_Fetched()
+    {
+        apotheke_Sound.pitch = Random.Range(minPitch, maxPitch);
+        apotheke_Sound.Play();
+        //RandomChatterNoise(); // talk to pharma
+        Invoke("RandomChatterNoise", .5f); // talking delayed
+        Invoke("RandomChatterNoise", 1f); // response delayed
+    }
+    public void Victory_Sound()
+    {
+        victory_Sound.Play();
     }
 }

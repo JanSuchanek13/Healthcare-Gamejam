@@ -9,6 +9,8 @@ public class CharacterController : MonoBehaviour
     Animation anim;
     bool isOnTheMove = false;
     GameObject gameMaster;
+    Vector3 talkingDistance;
+    [SerializeField] AudioSource walking_Sound;
 
     void Start()
     {
@@ -24,11 +26,13 @@ public class CharacterController : MonoBehaviour
         {
             anim.Stop("honeyArmature_IdleHoney");
             anim.Play("honeyArmature_walkinghoney");
-            //playerWalkingSound
-        }else
+            walking_Sound.enabled = true;
+        }
+        else
         {
             anim.Stop("honeyArmature_walkinghoney");
             anim.Play("honeyArmature_IdleHoney");
+            walking_Sound.enabled = false;
         }
 
         //if (gameMaster.GetComponent<GameMaster>().isBeingTalkedTo)
@@ -49,9 +53,13 @@ public class CharacterController : MonoBehaviour
         // stop patients from randomly moving
         gameMaster.GetComponent<GameMaster>().isBeingTalkedTo = true;
         // stop player
-        agent.SetDestination(transform.position);
+        //talkingDistance = transform.localScale * 1.5f; // not working, dunno why?
+        agent.SetDestination(transform.position + talkingDistance);
         // look at patient
         transform.LookAt(patientPos, transform.up);
+        // speak:
+        gameMaster.GetComponent<GameMaster>().RandomChatterNoise();
+
 
         //inCoRoutine = false; // redundant?
         //navMeshAgent.Stop(); // redundant?
