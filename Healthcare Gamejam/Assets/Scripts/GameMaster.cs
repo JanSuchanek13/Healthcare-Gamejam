@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
 
 public class GameMaster : MonoBehaviour
 {
@@ -11,12 +12,24 @@ public class GameMaster : MonoBehaviour
     // used to stop a patient
     public bool isBeingTalkedTo = false;
     public bool followEnabled = false;
-    bool zoomInOnPlayer = false;
+    //bool zoomInOnPlayer = false;
 
     // to open/close dialoge UI
     public GameObject interaction_UI;
+    public GameObject victoryBanner_UI;
+    public GameObject follow_Button;
     public GameObject conversationPartner;
     public GameObject playerCharacter;
+
+    // Klemmbrett UI
+    public GameObject klemmbrett_UI;
+    public bool hasPatient_1 = false;
+    //
+    public GameObject patient_1_Overview;
+    public TextMeshProUGUI patient_1_Name;
+    public TextMeshProUGUI patient_1_Ziel;
+    public TextMeshProUGUI patient_1_Weg;
+    public TextMeshProUGUI patient_1_verbleibendeTermine;
 
     // winning condition
     public int hearts;
@@ -25,42 +38,59 @@ public class GameMaster : MonoBehaviour
     public AudioSource clickSound;
     public AudioSource chatterSound;
     public AudioSource victorySound;
+    public AudioSource errorSound;
 
+    public void UpdatePatient_1(string name, string goal, string weg, int verbleibendeTermine)
+    {
+        hasPatient_1 = true;
+        patient_1_Name.text = name;
+        patient_1_Ziel.text = goal;
+        patient_1_Weg.text = weg;
+        patient_1_verbleibendeTermine.text = verbleibendeTermine.ToString();
+    }
     public void gainHearts()
     {
         hearts++;
-        Debug.Log("nr of hearzs " + hearts);
+        Debug.Log("nr of hearts " + hearts);
         if(hearts >= 3)
         {
             Debug.Log("you gathered " + hearts + " hearts! congrats!");
-
             // should stop all characters and let them idle
             isBeingTalkedTo = true;
-            zoomInOnPlayer = true;
-            //GameObject mainCam = GameObject.Find("Main Camera");
-            //mainCam.GetComponent<CameraZoom>().
-            /*    if (Camera.main.fieldOfView > maxZoom)
-            {
-                Camera.main.fieldOfView -= zoomSpeed * Time.deltaTime;
-            }
-            if (Camera.main.orthographicSize >= 1)
-            {
-                Camera.main.orthographicSize -= 0.5f;
-            }*/
-
-            // play victory sound (if we have one)
             if (victorySound)
             {
                 victorySound.Play();
             }
+            if (victoryBanner_UI)
+            {
+                victoryBanner_UI.SetActive(true);
+            }
         }
     }
-    private void FixedUpdate()
-    {
-        //if (zoomInOnPlayer && Camera.main.fieldOfView > maxZoom)
-        //{
 
-        //}
+    private void Update()
+    {
+        if (!followEnabled)
+        {
+            follow_Button.SetActive(false);
+        }
+    }
+    bool klemmbrettIsOpened = false;
+    public void Klippbrett()
+    {
+        if (!klemmbrettIsOpened)
+        {
+            klemmbrettIsOpened = true;
+            klemmbrett_UI.SetActive(true);
+            if (hasPatient_1)
+            {
+                patient_1_Overview.SetActive(true);
+            }
+        }else
+        {
+            klemmbrett_UI.SetActive(false);
+            klemmbrettIsOpened = false;
+        }
     }
     public void Continue()
     {
@@ -74,6 +104,16 @@ public class GameMaster : MonoBehaviour
         conversationPartner.GetComponent<FollowOtherCharacter>().Follow(playerCharacter);
         isBeingTalkedTo = true;
         interaction_UI.SetActive(false);
+        /*if (followEnabled)
+        {
+            StartCoroutine(ContinueSounds());
+            conversationPartner.GetComponent<FollowOtherCharacter>().Follow(playerCharacter);
+            isBeingTalkedTo = true;
+            interaction_UI.SetActive(false);
+        }else if (errorSound)
+        {
+            errorSound.Play();
+        }*/
     }
 
     IEnumerator ContinueSounds()
