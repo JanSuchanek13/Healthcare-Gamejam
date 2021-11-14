@@ -19,9 +19,10 @@ public class Hoverer : MonoBehaviour
 
     void Update()
     {
-        Vector3 tp = transform.position;
+        Vector3 tp = transform.parent.gameObject.transform.position;
+        Vector3 startPoint = new Vector3(tp.x, tp.y + 4, tp.z);
 
-        Vector3 targetPosition = transform.parent.gameObject.transform.position + Vector3.up * hoverHeight * Mathf.PingPong(Time.time, 1f) * speed;
+        Vector3 targetPosition = startPoint + Vector3.up * hoverHeight * Mathf.PingPong(Time.time, 1f) * speed;
         transform.position = targetPosition;
     }
 

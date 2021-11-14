@@ -46,6 +46,7 @@ public class NeedsPatient : MonoBehaviour
 
     private void Update()
     {
+        // enable follow button only for bath or if cooldown is not running
         if (currentNeed == "Bath" || !cooldownRunning)
         {
             Gamemaster.GetComponent<GameMaster>().followEnabled = true;
@@ -93,6 +94,7 @@ public class NeedsPatient : MonoBehaviour
             {
                 StartCoroutine(coroutine2);
                 Gamemaster.GetComponent<GameMaster>().gainHearts();
+
             }
         }
         if (relieve == currentNeed)
@@ -145,6 +147,7 @@ public class NeedsPatient : MonoBehaviour
 
     private IEnumerator Countdown()
     {
+
         cooldownRunning = true;
         yield return new WaitForSeconds(30.0f);
         cooldownRunning = false;
