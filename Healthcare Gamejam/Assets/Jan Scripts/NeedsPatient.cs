@@ -14,6 +14,7 @@ public class NeedsPatient : MonoBehaviour
     public bool taskAnnounced = false;
     int sessionsLeft = 3;
 
+    GameObject Gamemaster;
 
     private IEnumerator coroutine;
     
@@ -21,6 +22,8 @@ public class NeedsPatient : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Gamemaster = GameObject.Find("GAMEMASTER");
+
         //activate Maintask
         mainTask = "Ich will so schnell wie möglich wieder laufen können ^^";
 
@@ -67,20 +70,24 @@ public class NeedsPatient : MonoBehaviour
 
     public void clearNeeds(string relieve)
     {
-        
+        if (relieve == "Trigger_Reha")
+        {
+            sessionsLeft--;
+            Debug.Log("eine session geschafft");
+            if (sessionsLeft == 0)
+            {
+                //Gamemaster.gainHearts();
+            }
+        }
         if (relieve == currentNeed)
         {
-            if (relieve == "Trigger_Reha")
-            {
-                sessionsLeft--;
-                Debug.Log("eine session geschafft");
-            }
+            
             Debug.Log("hit");
             needStrength = -1;
             needActive = false;
             NeedsSign.gameObject.SetActive(false);
         }
-
+        //transform.parent.gameObject.GetComponent<MoveRandomly>().StopFollowing();
     }
 
     public bool compareNeeds(string relieve)
