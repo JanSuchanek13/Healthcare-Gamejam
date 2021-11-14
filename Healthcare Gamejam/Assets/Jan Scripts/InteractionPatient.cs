@@ -15,6 +15,8 @@ public class InteractionPatient : MonoBehaviour
     string currentRelieve;
     bool patientNearby = false;
     GameObject nearbyPatient;
+    bool followed = false;
+
     
 
     private void Start()
@@ -62,7 +64,7 @@ public class InteractionPatient : MonoBehaviour
             {
 
                 //ask for Need and set it
-                string currentNeed = other.transform.parent.gameObject.GetComponent<NeedsPatient>().currentNeed;
+                string currentNeed = other.transform.parent.gameObject.GetComponent<NeedsPatient>().needText;
                 InteractionUI_Text.text = currentNeed;
 
                 
@@ -77,9 +79,9 @@ public class InteractionPatient : MonoBehaviour
             }
             else
             {
+                other.transform.parent.gameObject.GetComponent<NeedsPatient>().taskAnnounced = true;
                 InteractionUI.SetActive(true);
                 InteractionUI_Text.text = other.transform.parent.gameObject.GetComponent<NeedsPatient>().mainTask;
-                other.transform.parent.gameObject.GetComponent<NeedsPatient>().taskAnnounced = true;
                 Gamemaster.GetComponent<GameMaster>().UpdatePatient_1(nearbyPatient.name, other.transform.parent.gameObject.GetComponent<NeedsPatient>().mainTask, " weitere Reha-Termine. Sieht schon richtig gut aus!", other.transform.parent.gameObject.GetComponent<NeedsPatient>().sessionsLeft);
             }
 
@@ -110,7 +112,7 @@ public class InteractionPatient : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Patient"))
         {
-            //Gamemaster.GetComponent<GameMaster>().isBeingTalkedTo = false;
+            Gamemaster.GetComponent<GameMaster>().isBeingTalkedTo = false;
             patientNearby = false;
             nearbyPatient = null;
             //InteractionUI.SetActive(false); //UI ausschalten wenn man sich von Patienten entfernt

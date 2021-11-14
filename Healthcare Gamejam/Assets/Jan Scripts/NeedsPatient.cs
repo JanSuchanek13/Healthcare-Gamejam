@@ -8,7 +8,8 @@ public class NeedsPatient : MonoBehaviour
     bool needActive = false;
     int needStrength = -1;
     public string[] needsList = new string[] {"Food", "Medic", "Bath" }; //Array aller needs
-    public string currentNeed = "Ich brauche Ruhe";
+    public string currentNeed;
+    public string needText = "Ich brauche Ruhe";
     Transform NeedsSign;
 
     // var for MainTask
@@ -30,6 +31,8 @@ public class NeedsPatient : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        needText = "Ich brauche Ruhe";
+
         Gamemaster = GameObject.Find("GAME_MASTER");
 
         //activate Maintask
@@ -37,7 +40,7 @@ public class NeedsPatient : MonoBehaviour
 
 
         //activate Need
-        coroutine = Needs(Random.Range(40f, 60f)); //zeit festlegen in der needs entstehen
+        coroutine = Needs(Random.Range(20f, 40f)); //zeit festlegen in der needs entstehen
         StartCoroutine(coroutine);
         NeedsSign = transform.Find("NeedsSign");
         
@@ -127,7 +130,7 @@ public class NeedsPatient : MonoBehaviour
                     Debug.Log("Fehler");
                     break;
             }
-            currentNeed = "Ich brauche Ruhe";
+            needText = "Ich brauche Ruhe";
         }
         gameObject.GetComponent<FollowOtherCharacter>().StopFollowing();
     }
@@ -153,6 +156,28 @@ public class NeedsPatient : MonoBehaviour
                 Debug.Log(currentNeed);
                 needStrength++;
 
+                switch (currentNeed)
+                {
+                    case "Food":
+
+                        needText = "Könnte ich ein Glas Wasser haben?";
+                        break;
+
+                    case "Medic":
+
+                        needText = "Mein Fuß tut weh";
+                        break;
+
+                    case "Bath":
+
+                        needText = "Ich muss zur Toilette";
+                        break;
+
+                    default:
+                        Debug.Log("Fehler");
+                        break;
+                }
+
                 /*if (currentNeed == "Bath" || !cooldownRunning)
                 {
                     Gamemaster.GetComponent<GameMaster>().followEnabled = true;
@@ -173,7 +198,7 @@ public class NeedsPatient : MonoBehaviour
     {
 
         cooldownRunning = true;
-        yield return new WaitForSeconds(30.0f);
+        yield return new WaitForSeconds(20.0f);
         cooldownRunning = false;
 
     }
