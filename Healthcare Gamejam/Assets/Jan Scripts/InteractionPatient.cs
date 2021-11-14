@@ -38,28 +38,33 @@ public class InteractionPatient : MonoBehaviour
             //Debug.Log(Gamemaster.GetComponent<GameMaster>().conversationPartner + " was handed over");
             other.transform.parent.gameObject.GetComponent<MoveRandomly>().StopAndTalk(gameObject.transform.position);
             gameObject.GetComponent<CharacterController>().StopPlayerToTalk(otherChar.transform.position);
+
+
+
+            patientNearby = true;
+            nearbyPatient = other.transform.parent.gameObject;
+
+
+            //Debug.Log("Needs recognized");
+            InteractionUI.SetActive(true);
+
+            //ask for picture and set it
+
+
+            //ask for name and set it
+            GameObject parent = other.transform.parent.gameObject;
+            string parentName = parent.name;
+            InteractionUI_Name.text = parentName;
+
+            
+
             if (other.transform.parent.gameObject.GetComponent<NeedsPatient>().taskAnnounced)
             {
-                
-
-                patientNearby = true;
-                nearbyPatient = other.transform.parent.gameObject;
-                
-
-                //Debug.Log("Needs recognized");
-                InteractionUI.SetActive(true);
-
-                //ask for picture and set it
-                
-
-                //ask for name and set it
-                GameObject parent = other.transform.parent.gameObject;
-                string parentName = parent.name;
-                InteractionUI_Name.text = parentName;
 
                 //ask for Need and set it
                 string currentNeed = other.transform.parent.gameObject.GetComponent<NeedsPatient>().currentNeed;
                 InteractionUI_Text.text = currentNeed;
+
 
 
                 if (other.transform.parent.gameObject.GetComponent<NeedsPatient>().compareNeeds(currentRelieve))    // ask if the Player has the right relieve for the Need
@@ -73,6 +78,7 @@ public class InteractionPatient : MonoBehaviour
                 InteractionUI.SetActive(true);
                 InteractionUI_Text.text = other.transform.parent.gameObject.GetComponent<NeedsPatient>().mainTask;
                 other.transform.parent.gameObject.GetComponent<NeedsPatient>().taskAnnounced = true;
+                //Gamemaster.GetComponent<GameMaster>().UpdatePatient_1(nearbyPatient.name, other.transform.parent.gameObject.GetComponent<NeedsPatient>().mainTask, " weitere Reha-Termine. Sieht schon richtig gut aus!", other.transform.parent.gameObject.GetComponent<NeedsPatient>().sessionsLeft);
             }
 
         }
@@ -105,7 +111,7 @@ public class InteractionPatient : MonoBehaviour
             Gamemaster.GetComponent<GameMaster>().isBeingTalkedTo = false;
             patientNearby = false;
             nearbyPatient = null;
-            InteractionUI.SetActive(false); //UI ausschalten wenn man sich von Patienten entfernt
+            //InteractionUI.SetActive(false); //UI ausschalten wenn man sich von Patienten entfernt
         }
     }
 }

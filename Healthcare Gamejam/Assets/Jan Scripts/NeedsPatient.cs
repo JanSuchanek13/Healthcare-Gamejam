@@ -4,20 +4,28 @@ using UnityEngine;
 
 public class NeedsPatient : MonoBehaviour
 {
+    // var for Need
     bool needActive = false;
     int needStrength = -1;
     public string[] needsList = new string[] {"Food", "Medic", "Bath" }; //Array aller needs
     public string currentNeed;
     Transform NeedsSign;
 
+    // var for MainTask
     public string mainTask;
     public bool taskAnnounced = false;
-    int sessionsLeft = 3;
+    public int sessionsLeft = 3;
 
+    //cooldown
+    bool cooldownRunning;
+
+    //gamemaster
     GameObject Gamemaster;
 
     private IEnumerator coroutine;
-    
+    private IEnumerator coroutine2;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +33,7 @@ public class NeedsPatient : MonoBehaviour
         Gamemaster = GameObject.Find("GAMEMASTER");
 
         //activate Maintask
-        mainTask = "Ich will so schnell wie möglich wieder laufen können ^^";
+        mainTask = "Ich möchte mein linkes Sprunggelenk wieder voll belasten können ^^";
 
 
         //activate Need
@@ -73,9 +81,12 @@ public class NeedsPatient : MonoBehaviour
         if (relieve == "Trigger_Reha")
         {
             sessionsLeft--;
+            Gamemaster.GetComponent<GameMaster>().gainHearts();
+            //Gamemaster.GetComponent<GameMaster>().UpdatePatient_1(gameObject.name, mainTask, sessionsLeft);
             Debug.Log("eine session geschafft");
             if (sessionsLeft == 0)
             {
+                StartCoroutine(coroutine2);
                 Gamemaster.GetComponent<GameMaster>().gainHearts();
             }
         }
@@ -87,7 +98,7 @@ public class NeedsPatient : MonoBehaviour
             needActive = false;
             NeedsSign.gameObject.SetActive(false);
         }
-        transform.parent.gameObject.GetComponent<FollowOtherCharacter>().StopFollowing();
+        gameObject.GetComponent<FollowOtherCharacter>().StopFollowing();
     }
 
     public bool compareNeeds(string relieve)
@@ -109,8 +120,12 @@ public class NeedsPatient : MonoBehaviour
                 int randomNeed = Random.Range(0, needsList.Length);
                 currentNeed = needsList[randomNeed];
                 Debug.Log(currentNeed);
-
                 needStrength++;
+
+                if (currentNeed == "Bath" || !cooldownRunning)
+                {
+                    Gamemaster.GetComponent<GameMaster>().followEnabled = true;
+                }
 
             }
             else
@@ -120,6 +135,14 @@ public class NeedsPatient : MonoBehaviour
             }
         }
 
+
+    }
+
+    private IEnumerator Countdown()
+    {
+        cooldownRunning = true;
+        yield return new WaitForSeconds(120.0f);
+        cooldownRunning = false;
 
     }
 
